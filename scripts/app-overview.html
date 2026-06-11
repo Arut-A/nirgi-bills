@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #1e293b;
+         font-size: 10.5px; line-height: 1.5; }
+  h1 { font-size: 26px; font-weight: 700; color: #0f172a; letter-spacing: -0.02em; }
+  h2 { font-size: 15px; font-weight: 700; color: #6366f1; margin: 22px 0 8px;
+       padding-bottom: 5px; border-bottom: 2px solid #e2e8f0; }
+  h3 { font-size: 11.5px; font-weight: 700; color: #0f172a; margin: 12px 0 3px; }
+  p { margin-bottom: 7px; }
+  .muted { color: #64748b; }
+  .accent { color: #6366f1; }
+  ul { margin: 4px 0 8px 16px; }
+  li { margin-bottom: 3px; }
+  code { background: #f1f5f9; border-radius: 3px; padding: 1px 4px; font-size: 9.5px;
+         color: #4338ca; font-family: 'Consolas', monospace; }
+
+  /* cover band */
+  .cover { background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff;
+           border-radius: 14px; padding: 26px 28px; margin-bottom: 8px; }
+  .cover .eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: .14em;
+                    opacity: .85; }
+  .cover h1 { color: #fff; margin: 6px 0 4px; }
+  .cover .sub { font-size: 12px; opacity: .92; }
+  .cover .meta { font-size: 9.5px; opacity: .8; margin-top: 14px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; }
+  th { text-align: left; font-size: 9px; text-transform: uppercase; letter-spacing: .05em;
+       color: #64748b; border-bottom: 1.5px solid #cbd5e1; padding: 5px 7px; }
+  td { padding: 6px 7px; border-bottom: 1px solid #eef2f7; vertical-align: top; }
+  td:first-child { font-weight: 600; color: #0f172a; white-space: nowrap; }
+
+  .cols { display: flex; gap: 18px; }
+  .col { flex: 1; }
+
+  .pill { display: inline-block; background: #eef2ff; color: #4338ca; border-radius: 20px;
+          padding: 2px 9px; font-size: 9px; font-weight: 600; margin: 0 3px 3px 0; }
+  .flow { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+          padding: 12px 14px; font-family: 'Consolas', monospace; font-size: 9.5px;
+          color: #334155; line-height: 1.7; margin: 6px 0 10px; }
+  .note { background: #f0fdf4; border-left: 3px solid #22c55e; border-radius: 6px;
+          padding: 8px 12px; margin: 8px 0; font-size: 10px; }
+  .shots { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 8px 0 4px; }
+  .shot { width: 31%; text-align: center; }
+  .shot img { width: 100%; border-radius: 11px; border: 1px solid #e2e8f0;
+              box-shadow: 0 3px 10px rgba(0,0,0,.14); }
+  .shot .cap { font-size: 8.5px; color: #64748b; margin-top: 4px; font-weight: 600; }
+  .foot { margin-top: 18px; padding-top: 8px; border-top: 1px solid #e2e8f0;
+          font-size: 8.5px; color: #94a3b8; text-align: center; }
+  .sw { display:inline-block; width:9px; height:9px; border-radius:2px; vertical-align:middle; margin-right:4px;}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">Jetpack Compose · Case study</div>
+  <h1>Household Bills — Android App</h1>
+  <div class="sub">A private utility-bills companion that helps you understand spending and spot deviations.</div>
+  <div class="meta">Version 1.0 · June 2026 · Single device (Galaxy S25) · Built &amp; signed on a home NAS</div>
+</div>
+
+<h2>What it is</h2>
+<p>A native Android app that puts the home utility-bills dashboard on your phone — and goes
+beyond a read-only view to <strong>help you make decisions</strong>: it surfaces what changed,
+which categories moved away from their normal, and whether your unit rates are drifting.
+It is installed on one phone only, signs in with your Google account, and shows exactly the
+same numbers as the web dashboard because both read through one shared calculation engine.</p>
+
+<div style="margin:4px 0 2px;">
+  <span class="pill">Kotlin · Jetpack Compose</span>
+  <span class="pill">Material 3 (dark)</span>
+  <span class="pill">Google Sign-In</span>
+  <span class="pill">HTTPS only</span>
+  <span class="pill">Offline cache</span>
+  <span class="pill">Sideloaded APK</span>
+</div>
+
+<h2>The screens</h2>
+<!--SCREENSHOTS-->
+
+<h2>The five tabs</h2>
+<table>
+  <tr><th>Tab</th><th>What it shows</th></tr>
+  <tr>
+    <td>🏠 Home</td>
+    <td><strong>Decisions first.</strong> "This month so far"; <em>What changed</em> — the last
+    complete month against its 6-month average with a plain-language verdict; <em>Biggest movers</em>
+    — each category vs its own normal (red = above, green = below, ⚠ on genuine spikes); unit costs
+    with a trend arrow; spending-by-category breakdown; and a 12-month trend line.</td>
+  </tr>
+  <tr>
+    <td>€ Costs</td>
+    <td>Monthly cost by category as stacked bars — <strong>tap any bar</strong> to drill into that
+    month's full breakdown. Category breakdown (avg/month), year-over-year comparison, and a
+    monthly-total line with a 3-month forecast (trailing 6-month average). Tap the legend to add or
+    remove categories.</td>
+  </tr>
+  <tr>
+    <td>⚡ Usage</td>
+    <td>Unit costs front and centre: latest values plus a full history line for each of the five
+    series — electricity s/kWh, gas s/kWh and s/m³, water €/m³, pellets s/kWh — each with its
+    average reference line. Below: consumption trends (kWh / m³), usage not cost.</td>
+  </tr>
+  <tr>
+    <td>🧾 Bills</td>
+    <td>Every bill grouped by month with subtotals, filterable by category. Bills are grouped by
+    their <strong>attributed month</strong> (a transport bill issued in June for May service sits
+    under May, matching the dashboard). Tap a row to open its original PDF.</td>
+  </tr>
+  <tr>
+    <td>🧮 Meters</td>
+    <td>Per-utility usage measured on each bill (kWh / m³) — latest reading, cumulative total, and a
+    history line. Reads the real per-period values from the bills.</td>
+  </tr>
+</table>
+<p class="muted">Settings (account, server, sign out) sits behind the gear icon in the top bar.</p>
+
+<h2>Decision support — understanding deviations</h2>
+<p>The app's distinguishing feature. For the latest complete month it compares every category against
+its own <strong>trailing six-month baseline</strong> and tells you the story, not just the number:</p>
+<ul>
+  <li><strong>What changed</strong> — e.g. "May €561 — €136 below your 6-month average of €697 (▼19.5%)."</li>
+  <li><strong>Biggest movers</strong> — categories sorted by how far they moved from normal, with the euro
+  delta and percentage, colour-coded by direction.</li>
+  <li><strong>Anomaly flags (⚠)</strong> — only genuine spikes are flagged (a category climbing well above
+  its norm); a category dropping to zero out of season, like pellets in summer, is not treated as an alert.</li>
+  <li><strong>Unit-cost trends</strong> — each rate shown against its 6-month average, so a tariff drift is
+  obvious at a glance.</li>
+</ul>
+
+<h2>Charts &amp; interaction</h2>
+<div class="cols">
+  <div class="col">
+    <h3>Readable by design</h3>
+    <ul>
+      <li>Y-axis value labels (you can read the magnitude, not just the shape)</li>
+      <li>A dashed <em>average</em> reference line on every chart, so deviations are visible against "normal"</li>
+      <li>Smooth animated lines with gradient fills; rounded, animated bars</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h3>Interactive</h3>
+    <ul>
+      <li>Tap any point or bar → a guide line and a value pill (month + exact value)</li>
+      <li>Tap a Costs bar → that month's category breakdown opens below</li>
+      <li>Gaps where data is missing — never a misleading drop to zero</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Filtering &amp; analysis</h2>
+<p>One-tap range presets are always visible on Costs and Usage — no menus to dig through:</p>
+<div style="margin:2px 0 6px;">
+  <span class="pill">12M</span><span class="pill">24M</span><span class="pill">YTD</span>
+  <span class="pill">2026</span><span class="pill">2025</span><span class="pill">2024</span><span class="pill">All</span>
+</div>
+<p>A range-summary card shows the total, average per month, and peak month for whatever you've selected.
+The chart legend is tappable to include or exclude categories — the whole view re-slices instantly,
+on-device.</p>
+
+<h2>Security &amp; access</h2>
+<ul>
+  <li><strong>Google Sign-In, one account only.</strong> The server verifies the Google identity and accepts
+  exactly one allowlisted email — any other account is refused.</li>
+  <li><strong>HTTPS only</strong> to the household server; the session token is stored in the Android Keystore
+  (encrypted), never in logs or backups.</li>
+  <li><strong>Fingerprint-ready</strong> and single-device by design — no Play Store, no other users.</li>
+</ul>
+
+<h2>How the data flows</h2>
+<div class="flow">
+  Utility bill email → Gmail scraper (daily 09:00) → parser → database<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+  bills_api  ──HTTPS :8443──→  Android app (live on open / pull-to-refresh)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;↑ shared calculation engine = identical numbers to the web dashboard
+</div>
+<ul>
+  <li><strong>Freshness:</strong> the app pulls live data every time you open it or pull to refresh; offline it
+  shows the last sync with a clear banner.</li>
+  <li><strong>New bills</strong> are ingested once a day at 09:00; a Telegram summary is sent on each run, so you
+  are notified when something new arrives.</li>
+  <li><strong>Parity:</strong> cost-month attribution and the accrual clip (e.g. annual insurance spread, pellets
+  by heating season) live in one shared module used by both the app and the dashboard.</li>
+</ul>
+
+<h2>Under the hood</h2>
+<table>
+  <tr><th>Area</th><th>Detail</th></tr>
+  <tr><td>App</td><td>Kotlin, Jetpack Compose, Material 3 dark; <code>minSdk 33</code>, arm64; package <code>ee.household.bills</code></td></tr>
+  <tr><td>Networking</td><td>Retrofit + kotlinx-serialization over HTTPS; session JWT in EncryptedSharedPreferences</td></tr>
+  <tr><td>Server</td><td><code>/api/auth/google</code>, <code>/api/bills/summary</code>, <code>/api/bills/series</code>, <code>/api/bills</code>, <code>/api/meter-readings</code></td></tr>
+  <tr><td>Build</td><td>Signed release APK built in a throttled container on the NAS; delivered to Telegram; sideloaded</td></tr>
+  <tr><td>Charts</td><td>Hand-built on Compose Canvas: animated, gradient-filled, scale-labelled, interactive</td></tr>
+</table>
+
+<div class="note">
+  <strong>In one line:</strong> open the app and it tells you where this month stands, what moved, and whether
+  your rates are drifting — the same trustworthy numbers as the dashboard, in a form built for a phone.
+</div>
+
+<div class="foot">
+  Household Bills v1.0 · a Jetpack Compose case study · June 2026
+</div>
+
+</body>
+</html>

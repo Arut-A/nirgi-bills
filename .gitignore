@@ -1,0 +1,18 @@
+# Signing — the key IS the app identity; never in git
+keystore/*.jks
+keystore/keystore.properties
+
+# Build outputs
+app/build/
+build/
+dist/
+.gradle/
+
+# IDE
+.idea/
+*.iml
+local.properties
+
+# Synology
+@eaDir/
+#recycle/

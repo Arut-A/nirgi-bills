@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><style>
+  :root{--bg:#0f1117;--surface:#1a1d27;--surface2:#222531;--surface3:#2a2d3a;--border:#2a2d3a;
+        --text:#e2e8f0;--muted:#64748b;--primary:#6366f1;--secondary:#a855f7;--up:#ef4444;--down:#22c55e;
+        --elec:#f59e0b;--gas:#3b82f6;--water:#06b6d4;--net:#22c55e;--phone:#8b5cf6;--garb:#6b7280;--pellet:#ef4444;--ins:#14b8a6;}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif;}
+  body{background:#fff;padding:0;}
+  .phone{width:340px;background:var(--bg);overflow:hidden;}
+  .status{height:24px;display:flex;justify-content:space-between;align-items:center;padding:0 16px;font-size:10px;color:var(--muted);}
+  .top{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;}
+  .top .t{font-size:17px;font-weight:600;color:var(--text);}
+  .top .r{color:var(--muted);font-size:15px;display:flex;gap:12px;}
+  .body{padding:8px 12px 0;display:flex;flex-direction:column;gap:9px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:11px 13px;}
+  .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;margin-bottom:7px;}
+  .big{font-size:26px;font-weight:700;color:var(--text);letter-spacing:-.02em;}
+  .row{display:flex;align-items:center;}
+  .mut{color:var(--muted);font-size:12px;} .tx{color:var(--text);}
+  .up{color:var(--up);} .down{color:var(--down);}
+  .bold{font-weight:700;}
+  .nav{height:54px;background:var(--surface);border-top:1px solid var(--border);display:flex;margin-top:10px;}
+  .nav div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:9.5px;color:var(--muted);}
+  .nav div.on{color:var(--primary);}
+  .nav .ic{font-size:15px;}
+  .chip{font-size:10.5px;padding:4px 11px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--text);white-space:nowrap;}
+  .chip.on{background:var(--primary);border-color:var(--primary);color:#fff;}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;}
+  .pill{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border-radius:8px;padding:4px 9px;font-size:12px;}
+  .dot{width:8px;height:8px;border-radius:2px;display:inline-block;}
+  .mv{display:flex;align-items:center;padding:5px 0;gap:8px;}
+  .mv .nm{flex:1;}
+  svg text{font-family:'Segoe UI',system-ui,sans-serif;}
+</style></head><body>
+
+<!-- ============ HOME ============ -->
+<div class="phone" id="home">
+  <div class="status"><span>14:32</span><span>📶 🔋 86%</span></div>
+  <div class="top"><span class="t">Household Bills</span><span class="r">⚙</span></div>
+  <div class="body">
+    <div class="card">
+      <div class="lbl">June 2026 · so far</div>
+      <div class="row" style="align-items:baseline;gap:10px"><span class="big">€87.40</span><span class="mut">3 bills in</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">What changed · May 2026</div>
+      <div class="row" style="align-items:baseline;gap:10px"><span class="big" style="font-size:23px">€561.02</span><span class="down bold" style="font-size:15px">▼ 19.5%</span></div>
+      <div class="mut" style="margin-top:3px">€136 below your 6-month average of €697.</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Biggest movers vs usual</div>
+      <div class="mv"><span style="font-size:15px">🔌</span><div class="nm"><div class="tx" style="font-size:13px">Electricity Network ⚠</div><div class="mut" style="font-size:11px">now €85.29 · usually €57</div></div><div style="text-align:right"><div class="up bold" style="font-size:14px">+€28</div><div class="up" style="font-size:10px">▲50.2%</div></div></div>
+      <div class="mv"><span style="font-size:15px">🔥</span><div class="nm"><div class="tx" style="font-size:13px">Gas ⚠</div><div class="mut" style="font-size:11px">now €66.44 · usually €49</div></div><div style="text-align:right"><div class="up bold" style="font-size:14px">+€17</div><div class="up" style="font-size:10px">▲35.7%</div></div></div>
+      <div class="mv"><span style="font-size:15px">🪵</span><div class="nm"><div class="tx" style="font-size:13px">Pellets</div><div class="mut" style="font-size:11px">now €0 · usually €203</div></div><div style="text-align:right"><div class="down bold" style="font-size:14px">−€203</div><div class="down" style="font-size:10px">▼100%</div></div></div>
+      <div class="mv"><span style="font-size:15px">🏠</span><div class="nm"><div class="tx" style="font-size:13px">House Insurance</div><div class="mut" style="font-size:11px">now €58.49 · usually €90</div></div><div style="text-align:right"><div class="down bold" style="font-size:14px">−€31</div><div class="down" style="font-size:10px">▼34.8%</div></div></div>
+      <div class="mut" style="font-size:9.5px;margin-top:4px">↑ red = above your normal · ↓ green = below</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Unit costs · latest vs usual</div>
+      <div class="row" style="justify-content:space-between">
+        <div style="text-align:center;flex:1"><div class="bold" style="color:var(--elec);font-size:16px">18.5</div><div class="down" style="font-size:8px">▼15.5%</div><div class="mut" style="font-size:9px">⚡ s/kWh</div></div>
+        <div style="text-align:center;flex:1"><div class="bold" style="color:var(--gas);font-size:16px">8.0</div><div class="mut" style="font-size:9px;margin-top:8px">🔥 s/kWh</div></div>
+        <div style="text-align:center;flex:1"><div class="bold" style="color:var(--water);font-size:16px">4.45</div><div class="mut" style="font-size:9px;margin-top:8px">💧 €/m³</div></div>
+        <div style="text-align:center;flex:1"><div class="bold" style="color:var(--pellet);font-size:16px">5.8</div><div class="mut" style="font-size:9px;margin-top:8px">🪵 s/kWh</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="nav"><div class="on"><span class="ic">⌂</span>Home</div><div><span class="ic">€</span>Costs</div><div><span class="ic">⚡</span>Usage</div><div><span class="ic">🧾</span>Bills</div><div><span class="ic">🧮</span>Meters</div></div>
+</div>
+
+<!-- ============ COSTS ============ -->
+<div class="phone" id="costs">
+  <div class="status"><span>14:32</span><span>📶 🔋 86%</span></div>
+  <div class="top"><span class="t">Costs</span><span class="r">☰ ⚙</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip on">12M</span><span class="chip">24M</span><span class="chip">YTD</span><span class="chip">2026</span><span class="chip">All</span></div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between">
+        <div style="text-align:center;flex:1"><div class="bold tx" style="font-size:15px">€697</div><div class="mut" style="font-size:9px">total · 12 mo</div></div>
+        <div style="text-align:center;flex:1"><div class="bold tx" style="font-size:15px">€562</div><div class="mut" style="font-size:9px">avg / month</div></div>
+        <div style="text-align:center;flex:1"><div class="bold tx" style="font-size:15px">€812</div><div class="mut" style="font-size:9px">peak: Jan '26</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="lbl">Monthly cost by category · tap a bar</div>
+      <span class="pill" style="margin-bottom:6px"><span class="dot" style="background:var(--primary)"></span><span class="mut">May 2026</span> <span class="tx bold">€561.02</span></span>
+      <svg viewBox="0 0 300 150" style="width:100%;height:150px;display:block">
+        <line x1="0" y1="2" x2="300" y2="2" stroke="#ffffff14"/><line x1="0" y1="50" x2="300" y2="50" stroke="#ffffff14"/><line x1="0" y1="100" x2="300" y2="100" stroke="#ffffff14"/>
+        <text x="2" y="11" fill="#64748b" font-size="9">€812</text>
+        <line x1="0" y1="46" x2="300" y2="46" stroke="#ffffff55" stroke-dasharray="6 5"/><text x="190" y="42" fill="#94a3b8" font-size="9" font-weight="600">avg €562</text>
+        <!-- 12 stacked bars -->
+        <g>
+          <rect x="4" y="40" width="18" height="108" fill="#f59e0b"/><rect x="4" y="28" width="18" height="14" fill="#3b82f6"/>
+          <rect x="28" y="20" width="18" height="128" fill="#f59e0b"/><rect x="28" y="8" width="18" height="14" fill="#3b82f6"/>
+          <rect x="52" y="48" width="18" height="100" fill="#f59e0b"/><rect x="52" y="38" width="18" height="12" fill="#3b82f6"/>
+          <rect x="76" y="58" width="18" height="90" fill="#f59e0b"/>
+          <rect x="100" y="70" width="18" height="78" fill="#f59e0b"/>
+          <rect x="124" y="80" width="18" height="68" fill="#f59e0b"/>
+          <rect x="148" y="86" width="18" height="62" fill="#f59e0b"/>
+          <rect x="172" y="90" width="18" height="58" fill="#f59e0b"/>
+          <rect x="196" y="84" width="18" height="64" fill="#f59e0b"/>
+          <rect x="220" y="78" width="18" height="70" fill="#f59e0b"/>
+          <rect x="244" y="64" width="18" height="84" fill="#f59e0b"/><rect x="244" y="52" width="18" height="12" fill="#3b82f6"/>
+          <rect x="266" y="116" width="18" height="32" fill="#f59e0b" opacity=".34"/>
+          <rect x="242" y="0" width="22" height="150" fill="#ffffff18" rx="3"/>
+        </g>
+      </svg>
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#64748b"><span>Jul '25</span><span>May '26</span><span>Jun '26</span></div>
+      <div class="chips" style="margin-top:8px;gap:8px">
+        <span style="font-size:10px;color:var(--text)"><span class="dot" style="background:var(--elec)"></span> Electricity</span>
+        <span style="font-size:10px;color:var(--text)"><span class="dot" style="background:var(--gas)"></span> Gas</span>
+        <span style="font-size:10px;color:var(--text)"><span class="dot" style="background:var(--water)"></span> Water</span>
+        <span style="font-size:10px;color:var(--muted)"><span class="dot" style="background:var(--surface2)"></span> Pellets</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="lbl">May 2026 breakdown · €561.02</div>
+      <div class="mv" style="padding:3px 0"><span class="dot" style="background:var(--elec)"></span><span class="nm tx" style="font-size:12.5px">⚡ Electricity</span><span class="mut" style="font-size:10px">29%</span><span class="tx bold" style="font-size:12.5px;margin-left:8px">€163</span></div>
+      <div class="mv" style="padding:3px 0"><span class="dot" style="background:var(--gas)"></span><span class="nm tx" style="font-size:12.5px">🔥 Gas</span><span class="mut" style="font-size:10px">18%</span><span class="tx bold" style="font-size:12.5px;margin-left:8px">€106</span></div>
+      <div class="mv" style="padding:3px 0"><span class="dot" style="background:var(--water)"></span><span class="nm tx" style="font-size:12.5px">💧 Water</span><span class="mut" style="font-size:10px">11%</span><span class="tx bold" style="font-size:12.5px;margin-left:8px">€60</span></div>
+    </div>
+  </div>
+  <div class="nav"><div><span class="ic">⌂</span>Home</div><div class="on"><span class="ic">€</span>Costs</div><div><span class="ic">⚡</span>Usage</div><div><span class="ic">🧾</span>Bills</div><div><span class="ic">🧮</span>Meters</div></div>
+</div>
+
+<!-- ============ USAGE ============ -->
+<div class="phone" id="usage">
+  <div class="status"><span>14:32</span><span>📶 🔋 86%</span></div>
+  <div class="top"><span class="t">Usage</span><span class="r">☰ ⚙</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip on">12M</span><span class="chip">24M</span><span class="chip">YTD</span><span class="chip">All</span></div>
+    <div class="card">
+      <div class="lbl">Unit costs · latest</div>
+      <div class="row" style="justify-content:space-between">
+        <div style="text-align:center;flex:1"><div class="bold" style="color:var(--elec);font-size:17px">18.5</div><div class="mut" style="font-size:9px">⚡ s/kWh</div></div>
+        <div style="text-align:center;flex:1"><div class="bold" style="color:var(--gas);font-size:17px">8.0</div><div class="mut" style="font-size:9px">🔥 s/kWh</div></div>
+        <div style="text-align:center;flex:1"><div class="bold" style="color:var(--water);font-size:17px">4.45</div><div class="mut" style="font-size:9px">💧 €/m³</div></div>
+        <div style="text-align:center;flex:1"><div class="bold" style="color:var(--pellet);font-size:17px">5.8</div><div class="mut" style="font-size:9px">🪵 s/kWh</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="lbl">⚡ Electricity · s/kWh (incl. network &amp; VAT)</div>
+      <span class="pill" style="margin-bottom:4px"><span class="dot" style="background:var(--elec)"></span><span class="mut">May 2026</span> <span class="tx bold">18.5 s/kWh</span></span>
+      <svg viewBox="0 0 300 110" style="width:100%;height:110px;display:block">
+        <line x1="0" y1="18" x2="300" y2="18" stroke="#ffffff14"/><line x1="0" y1="55" x2="300" y2="55" stroke="#ffffff14"/><line x1="0" y1="92" x2="300" y2="92" stroke="#ffffff14"/>
+        <text x="2" y="14" fill="#64748b" font-size="9">22.8</text><text x="2" y="104" fill="#64748b" font-size="9">17.9</text>
+        <line x1="0" y1="40" x2="300" y2="40" stroke="#ffffff55" stroke-dasharray="6 5"/><text x="210" y="36" fill="#94a3b8" font-size="9" font-weight="600">avg 21.9</text>
+        <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f59e0b" stop-opacity=".28"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></linearGradient></defs>
+        <path d="M0,30 C20,28 40,26 60,24 C90,20 110,40 135,46 C160,52 180,50 210,44 C240,38 270,72 300,82 L300,110 L0,110 Z" fill="url(#g1)"/>
+        <path d="M0,30 C20,28 40,26 60,24 C90,20 110,40 135,46 C160,52 180,50 210,44 C240,38 270,72 300,82" fill="none" stroke="#f59e0b" stroke-width="3"/>
+        <circle cx="300" cy="82" r="6" fill="#f59e0b"/><circle cx="300" cy="82" r="3" fill="#fff"/>
+        <line x1="300" y1="6" x2="300" y2="100" stroke="#ffffff33"/>
+      </svg>
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#64748b"><span>Jul '25</span><span>May '26</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Consumption · usage, not cost</div>
+      <div style="font-size:10px;color:var(--elec);font-weight:600">⚡ electricity kWh</div>
+      <svg viewBox="0 0 300 60" style="width:100%;height:54px;display:block">
+        <path d="M0,18 C30,14 60,10 90,20 C120,30 150,42 180,46 C210,48 240,40 300,30" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+        <text x="2" y="12" fill="#64748b" font-size="9">1100</text>
+      </svg>
+      <div style="font-size:10px;color:var(--gas);font-weight:600;margin-top:4px">🔥 gas m³</div>
+      <svg viewBox="0 0 300 60" style="width:100%;height:54px;display:block">
+        <path d="M0,12 C30,8 60,14 90,26 C120,38 150,48 180,50 C210,48 240,36 300,26" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+        <text x="2" y="12" fill="#64748b" font-size="9">160</text>
+      </svg>
+    </div>
+  </div>
+  <div class="nav"><div><span class="ic">⌂</span>Home</div><div><span class="ic">€</span>Costs</div><div class="on"><span class="ic">⚡</span>Usage</div><div><span class="ic">🧾</span>Bills</div><div><span class="ic">🧮</span>Meters</div></div>
+</div>
+
+<!-- ============ BILLS ============ -->
+<div class="phone" id="bills">
+  <div class="status"><span>14:32</span><span>📶 🔋 86%</span></div>
+  <div class="top"><span class="t">Bills</span><span class="r">⚙</span></div>
+  <div class="body">
+    <div class="chips"><span class="chip on">All</span><span class="chip">⚡ Electricity</span><span class="chip">🔥 Gas</span><span class="chip">💧 …</span></div>
+    <div class="mut bold" style="font-size:11px;margin-top:2px">MAY 2026 · €561.02</div>
+    <div class="card" style="padding:2px 13px">
+      <div class="mv"><span style="font-size:15px">⚡</span><div class="nm"><div class="tx" style="font-size:13px">Electricity · Alexela</div><div class="mut" style="font-size:11px">period May 1–31</div></div><div style="text-align:right"><div class="tx bold" style="font-size:13.5px">€82.39</div><div style="color:var(--primary);font-size:9px">PDF</div></div></div>
+      <div class="mv"><span style="font-size:15px">🔌</span><div class="nm"><div class="tx" style="font-size:13px">Electricity Network</div><div class="mut" style="font-size:11px">period May 1–31</div></div><div style="text-align:right"><div class="tx bold" style="font-size:13.5px">€85.29</div><div style="color:var(--primary);font-size:9px">PDF</div></div></div>
+      <div class="mv"><span style="font-size:15px">🔥</span><div class="nm"><div class="tx" style="font-size:13px">Gas · Alexela</div><div class="mut" style="font-size:11px">period May 1–31</div></div><div style="text-align:right"><div class="tx bold" style="font-size:13.5px">€66.44</div><div style="color:var(--primary);font-size:9px">PDF</div></div></div>
+      <div class="mv"><span style="font-size:15px">💧</span><div class="nm"><div class="tx" style="font-size:13px">Water · Viimsi Vesi</div><div class="mut" style="font-size:11px">period Apr 30 – May 31</div></div><div style="text-align:right"><div class="tx bold" style="font-size:13.5px">€60.10</div><div style="color:var(--primary);font-size:9px">PDF</div></div></div>
+    </div>
+    <div class="mut bold" style="font-size:11px">APRIL 2026 · €598.40</div>
+    <div class="card" style="padding:2px 13px">
+      <div class="mv"><span style="font-size:15px">⚡</span><div class="nm"><div class="tx" style="font-size:13px">Electricity · Alexela</div><div class="mut" style="font-size:11px">period Apr 1–30</div></div><div style="text-align:right"><div class="tx bold" style="font-size:13.5px">€115.79</div><div style="color:var(--primary);font-size:9px">PDF</div></div></div>
+      <div class="mv"><span style="font-size:15px">🔥</span><div class="nm"><div class="tx" style="font-size:13px">Gas · Alexela</div><div class="mut" style="font-size:11px">period Apr 1–30</div></div><div style="text-align:right"><div class="tx bold" style="font-size:13.5px">€69.10</div><div style="color:var(--primary);font-size:9px">PDF</div></div></div>
+    </div>
+  </div>
+  <div class="nav"><div><span class="ic">⌂</span>Home</div><div><span class="ic">€</span>Costs</div><div><span class="ic">⚡</span>Usage</div><div class="on"><span class="ic">🧾</span>Bills</div><div><span class="ic">🧮</span>Meters</div></div>
+</div>
+
+<!-- ============ METERS ============ -->
+<div class="phone" id="meters">
+  <div class="status"><span>14:32</span><span>📶 🔋 86%</span></div>
+  <div class="top"><span class="t">Meters</span><span class="r">⚙</span></div>
+  <div class="body">
+    <span class="pill" style="align-self:flex-start;background:var(--surface2)">📥 usage measured per bill</span>
+    <div class="card">
+      <div class="row" style="align-items:center;gap:10px">
+        <span style="font-size:15px">⚡</span>
+        <div class="nm"><div class="tx bold" style="font-size:13.5px">Electricity</div><div class="mut" style="font-size:11px">latest: May 2026</div></div>
+        <div style="text-align:right"><div class="tx bold" style="font-size:14px">907.5 kWh</div><div class="mut" style="font-size:9px">Σ 18,540 kWh</div></div>
+      </div>
+      <span class="pill" style="margin:6px 0 2px"><span class="dot" style="background:var(--elec)"></span><span class="mut">May 2026</span> <span class="tx bold">907.5 kWh</span></span>
+      <svg viewBox="0 0 300 100" style="width:100%;height:100px;display:block">
+        <line x1="0" y1="16" x2="300" y2="16" stroke="#ffffff14"/><line x1="0" y1="50" x2="300" y2="50" stroke="#ffffff14"/><line x1="0" y1="84" x2="300" y2="84" stroke="#ffffff14"/>
+        <text x="2" y="13" fill="#64748b" font-size="9">1150</text>
+        <line x1="0" y1="44" x2="300" y2="44" stroke="#ffffff55" stroke-dasharray="6 5"/><text x="210" y="40" fill="#94a3b8" font-size="9" font-weight="600">avg 840</text>
+        <defs><linearGradient id="g2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f59e0b" stop-opacity=".28"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></linearGradient></defs>
+        <path d="M0,72 C30,68 60,40 90,28 C120,18 150,22 180,34 C210,46 240,58 300,52 L300,100 L0,100 Z" fill="url(#g2)"/>
+        <path d="M0,72 C30,68 60,40 90,28 C120,18 150,22 180,34 C210,46 240,58 300,52" fill="none" stroke="#f59e0b" stroke-width="3"/>
+        <circle cx="300" cy="52" r="6" fill="#f59e0b"/><circle cx="300" cy="52" r="3" fill="#fff"/>
+      </svg>
+    </div>
+    <div class="card">
+      <div class="row" style="align-items:center;gap:10px">
+        <span style="font-size:15px">💧</span>
+        <div class="nm"><div class="tx bold" style="font-size:13.5px">Water</div><div class="mut" style="font-size:11px">latest: May 2026</div></div>
+        <div style="text-align:right"><div class="tx bold" style="font-size:14px">13.5 m³</div><div class="mut" style="font-size:9px">Σ 268 m³</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="nav"><div><span class="ic">⌂</span>Home</div><div><span class="ic">€</span>Costs</div><div><span class="ic">⚡</span>Usage</div><div><span class="ic">🧾</span>Bills</div><div class="on"><span class="ic">🧮</span>Meters</div></div>
+</div>
+
+</body></html>

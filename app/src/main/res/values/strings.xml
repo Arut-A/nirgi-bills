@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Household Bills</string>
+    <!-- Default server; set your own in Settings on first run -->
+    <string name="default_server_url">https://your-nas.example.com</string>
+    <!-- Google OAuth WEB client ID (the server's audience). Paste-able in
+         Settings at runtime, so an empty value here is fine. -->
+    <string name="default_web_client_id"></string>
+</resources>
