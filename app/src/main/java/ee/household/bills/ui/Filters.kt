@@ -12,7 +12,7 @@ import ee.household.bills.api.Series
  *  rolling-window range is the comfortable 90% case for phone analysis. */
 class FilterState {
     val categories = mutableStateMapOf<String, Boolean>()
-    var preset by mutableStateOf("12M")
+    var preset by mutableStateOf("YTD")   // default range on Costs & Usage
     private var inited = false
 
     fun initFrom(s: Series) {
